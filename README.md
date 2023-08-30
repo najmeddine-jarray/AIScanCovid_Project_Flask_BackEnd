@@ -31,10 +31,7 @@ DB_NAME = postgres
 DB_USER = postgres
 DB_PASSWORD = password
 ```
-### Attention
 
-* take Model out of the folder covid_predictionZIP
-* It must be in the same poth with main.py
 
 ### Installation
 
