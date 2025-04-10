@@ -1,0 +1,21 @@
+-- CREATE DATABASE postgres;
+CREATE TABLE
+  IF NOT EXISTS scanner_patients (
+    id SERIAL PRIMARY KEY NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    cin VARCHAR(255) NOT NULL,
+    phonenumber VARCHAR(255) NOT NULL,
+    birth VARCHAR(255) NOT NULL,
+    result VARCHAR(255) NOT NULL,
+    xraybase64 VARCHAR(
+      2500000000000000000000000000000000000000000000000000000000000000000005
+    ) NOT NULL
+  );
+  CREATE TABLE IF NOT EXISTS admin_login (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+INSERT INTO admin_login (email, password)
+VALUES ('admin@admin.com', 'admin');
