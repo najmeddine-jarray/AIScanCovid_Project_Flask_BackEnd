@@ -107,19 +107,25 @@ def login():
     return jsonify({'message': 'Invalid email or password'}), 400
 
 
-@app.route('/get', methods=['GET'])
-def get_users():
+@app.route('/getpatients', methods=['GET'])
+def get_patients():
     try:
         conn = get_db_connection()
         cur = conn.cursor(cursor_factory=extras.RealDictCursor)
         query = "SELECT * FROM scanner_patients"
         cur.execute(query)
-        users = cur.fetchall()
+        patients = cur.fetchall()
         cur.close()
         conn.close()
-        if not users:
-            return jsonify({'message': 'No users found'}), 404
-        return jsonify(users)
+
+        # Exclude the 'xrayBase64' field
+        for patient in patients:
+            if 'xraybase64' in patient:
+                del patient['xraybase64']
+
+        if not patients:
+            return jsonify({'message': 'No patients found'}), 404
+        return jsonify(patients)
     except Exception as e:
         return jsonify({'message': str(e)}), 500
 
